@@ -2,7 +2,7 @@ from pathlib import Path
 import shutil
 
 SOURCE = Path(r"C:\Users\ayman\OneDrive\Documents\AymanBaig-Resume.docx (1).pdf")
-DEST = Path(__file__).resolve().parent / "resume.pdf"
+DEST = Path(__file__).resolve().parent / "AymanBaig-Resume.pdf"
 
 if SOURCE.exists():
     shutil.copy2(SOURCE, DEST)
