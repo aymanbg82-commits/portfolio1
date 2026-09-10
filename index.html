@@ -17,14 +17,31 @@
     <header class="site-header">
       <div class="container nav-wrap">
         <a href="#home" class="brand" aria-label="Ayman Baig home">AYMAN<span>BAIG</span></a>
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="#home">Work</a>
-          <a href="#build">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <a href="#contact" class="button button-small">Available for Internship</a>
+        <div class="desktop-nav-wrap">
+          <nav class="desktop-nav" aria-label="Main navigation">
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#morework">Videos</a>
+            <a href="#contact">Blogs</a>
+          </nav>
+          <a href="#contact" class="header-talk">Let's talk <span>↗</span></a>
+        </div>
+        <div class="menu-wrap">
+          <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-menu">
+            <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+          <nav id="site-menu" class="menu-panel" aria-label="Main navigation" aria-hidden="true">
+            <a href="#home" data-section="home"><span>01</span><strong>HOME</strong><i aria-hidden="true">↗</i></a>
+            <a href="#about" data-section="about"><span>02</span><strong>ABOUT</strong><i aria-hidden="true">↗</i></a>
+            <a href="#skills" data-section="skills"><span>03</span><strong>SKILLS</strong><i aria-hidden="true">↗</i></a>
+            <a href="#projects" data-section="projects"><span>04</span><strong>PROJECTS</strong><i aria-hidden="true">↗</i></a>
+            <a href="#experience" data-section="experience"><span>05</span><strong>EXPERIENCE</strong><i aria-hidden="true">↗</i></a>
+            <a href="#morework" data-section="morework"><span>06</span><strong>VIDEOS</strong><i aria-hidden="true">↗</i></a>
+            <a href="#contact" data-section="contact"><span>07</span><strong>BLOGS</strong><i aria-hidden="true">↗</i></a>
+            <a href="#contact" data-section="contact"><span>08</span><strong>CONTACT</strong><i aria-hidden="true">↗</i></a>
+          </nav>
+        </div>
       </div>
     </header>
 
@@ -59,8 +76,8 @@
             <div class="hero-actions">
               <a class="button" href="#projects">VIEW MY WORK <span>↗</span></a>
 <a class="button button-secondary"
-   href="./AymanBaig-Resume.pdf"
-   download="Ayman_Baig_Resume.pdf">
+  href="./resume.pdf"
+  download="resume.pdf">
     RESUME <span>↓</span>
 </a>
             </div>
@@ -321,7 +338,7 @@
         </div>
       </section>
 
-      <section class="section-shell section-soft">
+      <section id="experience" class="section-shell section-soft">
         <div class="container">
           <div class="section-heading reveal">
             <p class="eyebrow">02 / CURRENT FOCUS</p>
@@ -499,8 +516,8 @@
             <h2>Download my resume.</h2>
           </div>
       <a class="button button-large"
-   href="./AymanBaig-Resume.pdf"
-   download="Ayman_Baig_Resume.pdf">
+    href="./resume.pdf"
+    download="resume.pdf">
     DOWNLOAD RESUME <span>↓</span>
 </a>
         </div>

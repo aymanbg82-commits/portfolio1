@@ -75,11 +75,11 @@ textarea {
 }
 
 .nav-wrap {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 80px;
-  gap: 1rem;
 }
 
 .brand {
@@ -93,23 +93,179 @@ textarea {
   letter-spacing: 0.08em;
 }
 
-.main-nav {
+.desktop-nav-wrap {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-soft);
+  gap: 2rem;
 }
 
-.main-nav a {
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  color: var(--text-soft);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.desktop-nav a {
   transition: color 0.2s ease;
 }
 
-.main-nav a:hover,
-.main-nav a:focus-visible {
+.desktop-nav a:hover,
+.desktop-nav a:focus-visible {
+  color: var(--accent);
+}
+
+.header-talk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
   color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.header-talk span {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.header-talk:hover,
+.header-talk:focus-visible {
+  border-color: var(--accent);
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-1px);
+}
+
+.menu-wrap {
+  position: relative;
+  display: none;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible,
+.menu-toggle[aria-expanded="true"] {
+  color: var(--accent);
+}
+
+.menu-icon {
+  display: grid;
+  gap: 4px;
+  width: 18px;
+}
+
+.menu-icon span {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon span:first-child {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon span:last-child {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 0.85rem);
+  right: 0;
+  width: min(300px, calc(100vw - 2rem));
+  padding: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(27, 49, 39, 0.96);
+  box-shadow: 0 24px 50px rgba(9, 18, 14, 0.35);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.menu-panel.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.menu-panel a {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3.35rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 6px;
+  color: var(--text-soft);
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+
+.menu-panel a span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.menu-panel a strong {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.menu-panel a i {
+  color: var(--accent);
+  font-size: 1rem;
+  font-style: normal;
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-panel a:hover,
+.menu-panel a:focus-visible,
+.menu-panel a.active {
+  padding-left: 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--text);
+}
+
+.menu-panel a:hover i,
+.menu-panel a:focus-visible i,
+.menu-panel a.active i {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.menu-panel a.active span {
+  color: var(--accent);
 }
 
 .button {
@@ -1234,15 +1390,15 @@ textarea {
 
 @media (max-width: 720px) {
   .nav-wrap {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem 0;
+    min-height: 70px;
   }
 
-  .main-nav {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+  .desktop-nav-wrap {
+    display: none;
+  }
+
+  .menu-wrap {
+    display: block;
   }
 
   .mini-nav {
@@ -1260,8 +1416,11 @@ textarea {
   }
 
   .button,
-  .button-small,
   .button-large {
     width: 100%;
+  }
+
+  .menu-panel {
+    right: -0.25rem;
   }
 }

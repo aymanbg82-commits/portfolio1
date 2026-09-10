@@ -9,6 +9,53 @@ if (yearElement) {
   yearElement.textContent = String(currentYear);
 }
 
+const menuToggle = document.querySelector('.menu-toggle');
+const menuPanel = document.querySelector('.menu-panel');
+const menuLinks = document.querySelectorAll('.menu-panel a[data-section]');
+const navigableSections = document.querySelectorAll('main section[id]');
+
+if (menuToggle && menuPanel) {
+  const setMenuOpen = (isOpen) => {
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    menuPanel.setAttribute('aria-hidden', String(!isOpen));
+    menuPanel.classList.toggle('is-open', isOpen);
+  };
+
+  menuToggle.addEventListener('click', () => {
+    setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  menuLinks.forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!menuPanel.contains(event.target) && !menuToggle.contains(event.target)) {
+      setMenuOpen(false);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setMenuOpen(false);
+      menuToggle.focus();
+    }
+  });
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        menuLinks.forEach((link) => {
+          link.classList.toggle('active', link.dataset.section === entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+
+  navigableSections.forEach((section) => sectionObserver.observe(section));
+}
+
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.querySelector('.form-status');
 
